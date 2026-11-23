@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mykola Stypanovych — Indie iOS Developer</title>
+<meta name="description" content="Indie iOS apps and games by Mykola Stypanovych: Leafday, Skyline Drop, Shredfie and more.">
+<meta property="og:title" content="Mykola Stypanovych — Indie iOS Developer">
+<meta property="og:description" content="Small, calm, well-made apps and games for iPhone.">
+<meta property="og:image" content="assets/icons/leafday.png">
+<meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111113" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/icons/leafday.png">
+<link rel="apple-touch-icon" href="assets/icons/leafday.png">
+<style>
+:root{
+  --bg:#f7f5f0; --surface:#ffffff; --text:#1a1a1c; --muted:#6b6b72; --line:#e6e3dc;
+  --accent:#1a1a1c; --accent-text:#ffffff; --chip:#efece5; --soon:#b4690e;
+  --radius:22px; --shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#111113; --surface:#1b1b1f; --text:#f2f2f4; --muted:#9a9aa3; --line:#2a2a30;
+    --accent:#f2f2f4; --accent-text:#111113; --chip:#26262b; --soon:#f0a54a;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--text);
+  font:16px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left))}
+
+/* header */
+header{padding:28px 0 0}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brand{font-weight:650;letter-spacing:-.01em;text-decoration:none}
+.nav a.link{color:var(--muted);text-decoration:none;font-size:15px}
+.nav a.link:hover{color:var(--text)}
+
+/* hero */
+.hero{padding:72px 0 56px}
+.hero h1{font-size:clamp(34px,6vw,60px);line-height:1.05;letter-spacing:-.035em;font-weight:700;max-width:16ch}
+.hero p{margin-top:20px;font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:52ch}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.chip{background:var(--chip);border-radius:999px;padding:7px 14px;font-size:14px;color:var(--muted)}
+.chip b{color:var(--text);font-weight:600}
+
+/* sections */
+h2{font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600;margin:0 0 18px}
+section{padding:24px 0 40px}
+
+/* app cards */
+.apps{display:grid;gap:20px}
+.app{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:24px;display:grid;gap:24px;
+  grid-template-columns:1fr;
+}
+@media (min-width:860px){
+  .app{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);padding:32px;align-items:center}
+}
+.app-head{display:flex;gap:16px;align-items:center}
+.icon{width:72px;height:72px;border-radius:22.5%;flex:none;box-shadow:0 0 0 1px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.1)}
+.app h3{font-size:22px;letter-spacing:-.02em;line-height:1.2}
+.meta{color:var(--muted);font-size:14px;margin-top:2px}
+.app .desc{margin-top:16px;color:var(--text);opacity:.85}
+.feats{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.feats span{background:var(--chip);border-radius:8px;padding:4px 10px;font-size:13px;color:var(--muted)}
+.cta{margin-top:22px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--accent-text);
+  text-decoration:none;border-radius:12px;padding:11px 18px;font-weight:600;font-size:15px;
+  transition:transform .15s ease,opacity .15s ease;
+}
+.btn:hover{opacity:.88}
+.btn:active{transform:scale(.97)}
+.btn svg{width:18px;height:18px;fill:currentColor}
+.rating{font-size:14px;color:var(--muted)}
+.rating b{color:var(--text)}
+
+/* screenshots: horizontal scroll on mobile, row on desktop */
+.shots{
+  display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+  margin:0 -24px;padding:4px 24px 8px;scrollbar-width:none;
+}
+.shots::-webkit-scrollbar{display:none}
+.shots img{
+  flex:none;width:min(42vw,190px);aspect-ratio:320/696;object-fit:cover;
+  border-radius:16px;scroll-snap-align:start;background:var(--chip);
+  border:1px solid var(--line);
+}
+@media (min-width:860px){
+  .shots{margin:0;padding:0;overflow:visible;justify-content:flex-end}
+  .shots img{width:calc((100% - 24px)/3)}
+}
+
+/* coming soon */
+.soon{display:grid;gap:16px;grid-template-columns:1fr}
+@media (min-width:640px){.soon{grid-template-columns:1fr 1fr}}
+.soon .card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px;display:flex;gap:16px;align-items:center;
+}
+.soon .icon{width:60px;height:60px}
+.soon h3{font-size:18px;letter-spacing:-.01em}
+.tag{display:inline-block;margin-top:6px;font-size:12px;font-weight:600;color:var(--soon);letter-spacing:.02em}
+
+/* about */
+.about{
+  display:grid;gap:24px;grid-template-columns:1fr;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;
+}
+@media (min-width:860px){.about{grid-template-columns:1fr 1fr;padding:40px}}
+.about p{color:var(--muted)}
+.about p + p{margin-top:12px}
+.about h3{font-size:24px;letter-spacing:-.02em;margin-bottom:12px}
+.links{display:flex;flex-direction:column;gap:10px;justify-content:center}
+.links a{
+  display:flex;justify-content:space-between;align-items:center;text-decoration:none;
+  padding:14px 16px;border-radius:14px;background:var(--chip);font-weight:500;
+}
+.links a:hover{opacity:.8}
+
+footer{padding:40px 0 calc(40px + env(safe-area-inset-bottom));color:var(--muted);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="nav">
+    <a class="brand" href="#">Mykola Stypanovych</a>
+    <a class="link" href="#apps">Apps</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>Small, calm apps &amp; games for iPhone.</h1>
+    <p>I'm Mykola, an indie iOS developer from Ukraine. I design, build and ship every app myself in Swift, from the first sketch to the App Store page.</p>
+    <div class="stats">
+      <span class="chip"><b>3</b> apps on the App Store</span>
+      <span class="chip"><b>2</b> coming soon</span>
+      <span class="chip"><b>★ 4.9</b> Leafday rating</span>
+    </div>
+  </section>
+
+  <section id="apps">
+    <h2>On the App Store</h2>
+    <div class="apps">
+
+      <article class="app">
+        <div>
+          <div class="app-head">
+            <img class="icon" src="assets/icons/leafday.png" alt="Leafday icon" width="72" height="72">
+            <div>
+              <h3>Leafday</h3>
+              <div class="meta">To Do List &amp; Planner · Productivity · Free</div>
+            </div>
+          </div>
+          <p class="desc">A calm daily to-do list. Write a task down, see what matters today, tick it off. Nothing turns red, nothing nags.</p>
+          <div class="feats"><span>Reminders &amp; repeats</span><span>Subtasks</span><span>Calendar</span><span>Widgets</span><span>Apple Watch</span></div>
+          <div class="cta">
+            <a class="btn" href="https://apps.apple.com/app/id6448136371" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.8zM14 5.3c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>
+              Download on the App Store
+            </a>
+            <span class="rating"><b>★ 4.9</b> in Ukraine</span>
+          </div>
+        </div>
+        <div class="shots">
+          <img src="assets/shots/leafday-1.jpg" alt="Leafday screenshot 1" loading="lazy">
+          <img src="assets/shots/leafday-2.jpg" alt="Leafday screenshot 2" loading="lazy">
+          <img src="assets/shots/leafday-3.jpg" alt="Leafday screenshot 3" loading="lazy">
+        </div>
+      </article>
+
+      <article class="app">
+        <div>
+          <div class="app-head">
+            <img class="icon" src="assets/icons/skyline.png" alt="Skyline Drop icon" width="72" height="72">
+            <div>
+              <h3>Skyline Drop</h3>
+              <div class="meta">Stacking Game · Games · Free</div>
+            </div>
+          </div>
+          <p class="desc">Drop floors from a swinging crane and stack the tallest tower in the city. Line each floor up perfectly and play the next note of a tune.</p>
+          <div class="feats"><span>3 districts</span><span>14 building styles</span><span>Legendary buildings</span><span>One-tap play</span></div>
+          <div class="cta">
+            <a class="btn" href="https://apps.apple.com/app/id6836131684" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.8zM14 5.3c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>
+              Download on the App Store
+            </a>
+          </div>
+        </div>
+        <div class="shots">
+          <img src="assets/shots/skyline-1.jpg" alt="Skyline Drop screenshot 1" loading="lazy">
+          <img src="assets/shots/skyline-2.jpg" alt="Skyline Drop screenshot 2" loading="lazy">
+          <img src="assets/shots/skyline-3.jpg" alt="Skyline Drop screenshot 3" loading="lazy">
+        </div>
+      </article>
+
+      <article class="app">
+        <div>
+          <div class="app-head">
+            <img class="icon" src="assets/icons/shredfie.png" alt="Shredfie icon" width="72" height="72">
+            <div>
+              <h3>Shredfie</h3>
+              <div class="meta">Who Pays? Party Game · Entertainment</div>
+            </div>
+          </div>
+          <p class="desc">One group selfie. One spin. One loser. Shredfie rips your photo into paper scraps, one face each, and the arrow decides who pays.</p>
+          <div class="feats"><span>One selfie, no typing</span><span>Face detection</span><span>Party game</span></div>
+          <div class="cta">
+            <a class="btn" href="https://apps.apple.com/app/id6832300364" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.8zM14 5.3c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>
+              Download on the App Store
+            </a>
+          </div>
+        </div>
+        <div class="shots">
+          <img src="assets/shots/shredfie-1.jpg" alt="Shredfie screenshot 1" loading="lazy">
+          <img src="assets/shots/shredfie-2.jpg" alt="Shredfie screenshot 2" loading="lazy">
+          <img src="assets/shots/shredfie-3.jpg" alt="Shredfie screenshot 3" loading="lazy">
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Coming soon</h2>
+    <div class="soon">
+      <div class="card">
+        <img class="icon" src="assets/icons/fine.png" alt="Fine icon" width="60" height="60" loading="lazy">
+        <div>
+          <h3>Fine: App Blocker &amp; Focus</h3>
+          <div class="meta">Cut screen time. Pay to unlock early.</div>
+          <span class="tag">IN REVIEW</span>
+        </div>
+      </div>
+      <div class="card">
+        <img class="icon" src="assets/icons/graze.png" alt="Graze icon" width="60" height="60" loading="lazy">
+        <div>
+          <h3>Graze: Orbit &amp; Gravity</h3>
+          <div class="meta">Offline one-tap space arcade.</div>
+          <span class="tag">IN REVIEW</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="about">
+      <div>
+        <h3>About</h3>
+        <p>I build apps I want to use myself: quiet, fast, and respectful of your time. Every app is localized into dozens of languages and works offline where it can.</p>
+        <p>Native Swift &amp; SwiftUI, widgets, Apple Watch, Screen Time API, SpriteKit.</p>
+      </div>
+      <div class="links">
+        <a href="https://apps.apple.com/developer/id1683651958" target="_blank" rel="noopener">All apps on the App Store <span>↗</span></a>
+        <a href="https://github.com/someoneSwifty" target="_blank" rel="noopener">GitHub <span>↗</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">© <span id="y">2026</span> Mykola Stypanovych · Made in Ukraine 🇺🇦</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
